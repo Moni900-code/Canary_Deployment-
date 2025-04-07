@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       rollout_percentage:
-        description: 'Rollout traffic percentage (e.g., 10, 30, 100)'
+        description: "Rollout traffic percentage (e.g., 10, 30, 100)"
         required: true
-        default: '10'
+        default: "10"
 
 jobs:
   canary-deploy:
@@ -33,16 +33,14 @@ jobs:
           ROLLOUT: ${{ github.event.inputs.rollout_percentage }}
         run: |
           echo "ð Starting Canary Deployment with $ROLLOUT% traffic..."
-          
+
           if [ "$ROLLOUT" = "10" ]; then
             echo "ð Routing 10% traffic to new version"
-            
           elif [ "$ROLLOUT" = "30" ]; then
             echo "ð Routing 30% traffic to new version"
-            # config update
+            # Optional config update here
           elif [ "$ROLLOUT" = "100" ]; then
             echo "â 100% rollout completed!"
-           
           else
             echo "â ï¸ Invalid rollout percentage!"
             exit 1
