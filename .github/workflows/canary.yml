@@ -38,7 +38,6 @@ jobs:
             echo "ð Routing 10% traffic to new version"
           elif [ "$ROLLOUT" = "30" ]; then
             echo "ð Routing 30% traffic to new version"
-            # Optional config update here
           elif [ "$ROLLOUT" = "100" ]; then
             echo "â 100% rollout completed!"
           else
