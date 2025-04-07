@@ -1,0 +1,49 @@
+name: Canary Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      rollout_percentage:
+        description: 'Rollout traffic percentage (e.g., 10, 30, 100)'
+        required: true
+        default: '10'
+
+jobs:
+  canary-deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Canary Deployment Script
+        env:
+          ROLLOUT: ${{ github.event.inputs.rollout_percentage }}
+        run: |
+          echo "ð Starting Canary Deployment with $ROLLOUT% traffic..."
+          
+          if [ "$ROLLOUT" = "10" ]; then
+            echo "ð Routing 10% traffic to new version"
+            
+          elif [ "$ROLLOUT" = "30" ]; then
+            echo "ð Routing 30% traffic to new version"
+            # config update
+          elif [ "$ROLLOUT" = "100" ]; then
+            echo "â 100% rollout completed!"
+           
+          else
+            echo "â ï¸ Invalid rollout percentage!"
+            exit 1
+          fi
