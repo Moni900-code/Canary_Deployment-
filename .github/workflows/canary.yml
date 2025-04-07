@@ -32,15 +32,15 @@ jobs:
         env:
           ROLLOUT: ${{ github.event.inputs.rollout_percentage }}
         run: |
-          echo "ð Starting Canary Deployment with $ROLLOUT% traffic..."
+          echo " Starting Canary Deployment with $ROLLOUT% traffic..." 
 
           if [ "$ROLLOUT" = "10" ]; then
-            echo "ð Routing 10% traffic to new version"
+            echo " Routing 10% traffic to new version" 
           elif [ "$ROLLOUT" = "30" ]; then
-            echo "ð Routing 30% traffic to new version"
+            echo " Routing 30% traffic to new version" 
           elif [ "$ROLLOUT" = "100" ]; then
-            echo "â 100% rollout completed!"
+            echo " 100% rollout completed!" 
           else
-            echo "â ï¸ Invalid rollout percentage!"
+            echo " Invalid rollout percentage!" 
             exit 1
           fi
