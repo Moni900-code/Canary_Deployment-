@@ -15,6 +15,7 @@ Here, Facebook has released a **new update**, but not for **everyone at once**. 
 If everything goes well, they’ll gradually increase it to 30%, and finally 100%.
 If something goes wrong, it affects only a few, and you can rollback quickly.
 ### This is Canary Deployment.
+![Diagram](canaryDeploymentworkflow.svg)
 
 ## Why Use Canary Deployment?
 - Minimize risk by catching bugs early
